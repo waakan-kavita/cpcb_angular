@@ -21,6 +21,7 @@
                 [routerLinkActiveOptions]="{exact: true}">
                 <a [routerLink]="menuItem.class === '' ? [menuItem.path] : null " [ngClass]="menuItem.class === '' ? '' : 'cursor-pointer' " *ngIf="!menuItem.isExternalLink; else externalLinkBlock">
                     <i [ngClass]="[menuItem.icon]"></i>
+                    <img *ngIf="menuItem.imageIcon" [src]="menuItem.imageIcon" alt="Icon" style="height: 20px;width: 20px;"/> 
                     <span class="menu-title">{{menuItem.title}}</span>
                     <span *ngIf="menuItem.badge != '' " [ngClass]="[menuItem.badgeClass]">{{menuItem.badge}}</span>
                 </a>

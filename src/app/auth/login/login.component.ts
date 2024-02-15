@@ -11,7 +11,6 @@ import { LoginApiService } from 'src/app/login-api.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   
   angForm: FormGroup;
   generatedOTP: string;
