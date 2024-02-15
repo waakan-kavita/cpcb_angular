@@ -1,0 +1,175 @@
+<!-- <div class="">
+    <div class="d-flex flex-wrap">
+      <div *ngFor="let dropdown of dropdowns" class="p-2">
+        <h3>{{ dropdown.name }}</h3>
+        <div class="position-relative">
+          <mat-select class="w-100" placeholder="Select {{ dropdown.name }}" [(value)]="selected[dropdown.name]" multiple [displayWith]="displayCount"
+                      #selectDropdown matInput>
+              <div class="buttons-container" *ngIf="selectDropdown.panelOpen">
+                <button mat-button class="select-all-button" (click)="selectAll(dropdown.name)">Select All</button>
+                <button mat-button class="unselect-all-button" (click)="unselectAll(dropdown.name)">Unselect All</button>
+              </div>
+            <mat-option *ngFor="let item of dropdown.data" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+         
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!--
+    <mat-form-field>
+      <mat-label>Select States</mat-label>
+        <mat-select [formControl]="selectedStatesControl" (openedChange)="togglePanel()">
+          <mat-select-trigger>
+            {{ selectedStates.length || 0 }} selected
+          </mat-select-trigger>
+          <mat-option *ngFor="let state of filteredStates" [value]="state" (click)="toggleSelection(state)">
+            <mat-checkbox [checked]="isSelected(state)">{{ state.name }}</mat-checkbox>
+          </mat-option>
+          <mat-option>
+            <mat-checkbox (click)="checkAll()">Select All</mat-checkbox>
+          </mat-option>
+          <mat-option>
+            <mat-checkbox (click)="uncheckAll()">Unselect All</mat-checkbox>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput type="text" placeholder="Filter States" [(ngModel)]="stateFilter" (input)="applyFilter()">
+      </mat-form-field>
+ -->
+  
+  
+   <form [formGroup]="searchForm">
+  
+    <div class="col-md-12" style="border: 1px solid lightgray;border-radius: 5px; display: flex; margin-bottom: 4px;">
+  
+      <input type="hidden" name="category" id="category">
+      <div class="col-md-2" style="width:19.7%;">
+
+        <div class="input-group">
+          <strong>Select States(s)</strong>
+  
+          <span *ngIf="selectedState.length > 0">{{ selectedState.length }}</span>
+          <button class="mat-flat-button" [class.success-button]="buttonClicked"
+            (click)="onClickButton(); toggleDropdownState()">
+  
+            <span>{{ selectedState.length > 0 ? (selectedState.length === 1 ? '1 Select option' :
+              selectedState.length + ' Select option') : 'Select option' }}
+            </span>
+          </button>
+  
+
+      </div>
+      
+      <!-- <div class="tooltip" [class.visible]="tooltipVisible">
+        <!-- <img src="/assets/images2/icons/info-icon-23.png" height="20" width="20" alt="info icon"> --
+        <i class="fadeIn animated bx bx-info-circle"></i>
+        <span class="tooltiptext">
+          <u>Selected States</u>
+          <p *ngFor="let control of selectedState.controls">
+            {{ control.value.name }}
+          </p>
+        </span>
+      </div> -->
+  
+        <div class="ui-multiselect-menu ui-widget ui-widget-content ui-corner-all" *ngIf="dropdownOpenState">
+          <div class="ui-multiselect-filter">
+            Filter:
+            <input matInput placeholder="Enter keywords" type="search" (input)="applyFilterState($event.target.value)">
+  
+            <ul class="ui-helper-reset">
+              <li>
+                <a class="ui-multiselect-all" href="javascript:void(0)" *ngIf="selectAllVisibleState"
+                  (click)="selectAllState()">
+                  <span class="ui-icon ui-icon-check"></span>
+                  <span>Check all</span>
+                </a>
+              </li>
+              <li><a class="ui-multiselect-none" href="javascript:void(0)" *ngIf="uncheckAllVisibleState"
+                  (click)="uncheckAllState()"><span class="ui-icon ui-icon-closethick"></span><span>Uncheck all</span></a>
+              </li>
+  
+              <li class="ui-multiselect-close"><a href="javascript:void(0)" class="ui-multiselect-close"
+                  (click)="closeDropdown()">
+                  <span class="ui-icon ui-icon-circle-close"></span></a></li>
+  
+            </ul>
+          </div>
+          <div *ngIf="dropdownOpenState" class="dropdown-content">
+            <div class="input_select">
+  
+              <label *ngFor="let state of filteredStates" class="checkbox">
+                <input type="checkbox" [value]="state.id" [checked]="state.checked"
+                  (change)="toggleStateCheckbox(state.id)">
+                {{ state.name }}
+              </label>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+  
+      <div class="col-md-2" style="width:19.7%;">
+        <div class="input-group">
+          <strong>Select City(ies)</strong>
+  
+          <span *ngIf="selectedCities.length > 0">{{ selectedCities.length }}</span>
+  
+          <button class="mat-flat-button" (click)="toggleDropdownCity()">
+            <span>{{ selectedCities.length > 0 ? (selectedCities.length === 1 ? '1 Select option' :
+              selectedCities.length + ' Select option') : 'Select option' }}
+            </span>
+          </button>
+        </div>
+        <div class="tooltip" [class.visible]="tooltipVisible">
+          <i class="fadeIn animated bx bx-info-circle"></i>
+          <span class="tooltiptext">
+            <u>Selected States</u>
+            <p *ngFor="let state of selectedCities">{{ state.name }}</p>
+          </span>
+        </div>
+        <div class="ui-multiselect-menu ui-widget ui-widget-content ui-corner-all" *ngIf="dropdownOpenCity">
+          <div class="ui-multiselect-filter">
+            Filter:
+            <input matInput placeholder="Enter keywords" type="search" (input)="applyFilterCity($event.target.value)">
+  
+            <ul class="ui-helper-reset">
+              <li><a class="ui-multiselect-all" href="javascript:void(0)" *ngIf="selectAllVisible"
+                  (click)="selectAllCities()">
+                  <span class="ui-icon ui-icon-check"></span>
+                  <span>Check all</span>
+                </a>
+              </li>
+              <li><a class="ui-multiselect-none" href="javascript:void(0)" *ngIf="uncheckAllVisible"
+                  (click)="uncheckAllCities()"><span class="ui-icon ui-icon-closethick"></span><span>Uncheck
+                    all</span></a>
+              </li>
+  
+              <li class="ui-multiselect-close"><a href="javascript:void(0)" class="ui-multiselect-close"
+                  (click)="closeDropdownCity()">
+                  <span class="ui-icon ui-icon-circle-close"></span></a></li>
+  
+            </ul>
+          </div>
+          <div *ngIf="dropdownOpenCity" class="dropdown-content">
+            <div class="input_select">
+  
+              <label *ngFor="let city of filteredCities" class="checkbox">
+                <input type="checkbox" [value]="city.id" [checked]="city.checked" (change)="toggleCityCheckbox(city.id)">
+                {{ city.name }}
+              </label>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  </form> 
+  

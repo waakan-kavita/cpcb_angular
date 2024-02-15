@@ -1,0 +1,37 @@
+
+<body style="height:700px;">
+    
+<!--<h2>"ESA Service Portal"</h2>-->
+
+<div class="loginBox"  id="loginBoxjs">
+<a href="https://www.google.com/maps/@28.6597915,77.4816687,10z" target="blank"><img id="imgAnimate" src="assets/images/login-imgs/W31X.gif" class="user" title="google map"></a>
+<br>
+<h4>Log In Here</h4>
+<br><br>
+<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
+<p>User Name :</p>
+<input type="text" formControlName="email" name="email" placeholder="Enter Username" autocomplete="off">
+<p>Password :</p>
+<input type="password" formControlName="password" name="password" placeholder="Enter Password" autocomplete="off">
+<!--<p>User :</p>
+<select name="ujob" ><option>Select User Type</option><option>CPCB-OCEMS</option><option>CPCB-All</option><option>Industry</option><option>Admin</option></select>-->
+<br><br>
+<!-- <button type="button" (click)="sendOTP()" [disabled]="otpSent">Send OTP</button>
+  <div *ngIf="otpSent">OTP Sent: {{ generatedOTP }}</div>
+  <div *ngIf="otpSent">
+    <input type="text" placeholder="Enter OTP" [(ngModel)]="enteredOTP" name="enteredOTP">
+    <button type="button" (click)="submitOTP()">Submit OTP</button>
+  </div> -->
+  <br><br>
+<div style="text-align:center;"><input type="submit"  value="Login" title="click here to login"></div>
+<p style="text-align:center;">------- or --------</p>
+<div style="text-align:center;"><a id="hidelogin" routerLink="../register" rel="modal:open" title="click here to register">
+<input type="button" value="Sign up"></a></div>
+<br><br>
+<div style="text-align:center;"><a id="hideloginFB" routerLink="../forget_password" title="click here to reset password">Forget Password</a>
+</div>
+</form>
+</div>
+<marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">Data available at this portal is as per CPCB prescribed procedure published at <a href="https://www.cpcb.nic.in/" target="blank">www.cpcb.nic.in</a></marquee>
+
+</body>

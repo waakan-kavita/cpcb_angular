@@ -1,0 +1,27 @@
+agm-map{
+    height: 500px;
+}
+
+::ng-deep .mat-select-trigger {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  
+  ::ng-deep .mat-select-value {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  ::ng-deep .mat-select-value-text {
+    flex-grow: 1;
+  }
+  
+  ::ng-deep .mat-select-panel {
+    max-height: 200px; /* Set the max height for the dropdown */
+  }
+  
+  ::ng-deep .mat-option {
+    white-space: nowrap;
+  }
+  
