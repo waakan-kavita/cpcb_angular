@@ -8,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class ECommerceComponent implements OnInit {
   latitude:20.5937;
   longitude:78.9629;
+
+  stations = [
+    { name: 'UDAIPUR', lat: 24.597914538824, lng: 73.749865816741 },
+    { name: 'Pune', lat: 18.666221312038, lng: 74.136962058039 },
+    { name: 'Station 3', lat: 22.2587, lng: 71.1924 },
+    // Add more stations as needed
+  ];
   constructor() { }
 
   //////code start here for multiple select with checkbox////////////
