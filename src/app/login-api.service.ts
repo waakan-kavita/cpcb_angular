@@ -31,14 +31,14 @@ constructor(private httpClient : HttpClient) { }
 // }));
 // }
 
-public userlogin(username, password) {
-  alert(username);
-  return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
+public userlogin(username, pass) {
+
+  return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, pass })
     .pipe(map(response => {
       console.log('Response:', response); // Log the response object
-      if (response && response.length > 0 && response[0].email === username && response[0].password === password) {
+      if (response && response.length > 0 && response[0].username === username && response[0].password === pass) {
         // Authentication successful
-        this.setToken('token_value'); // Set a token (replace 'token_value' with an actual token)
+        this.setToken('token_value'); 
         this.getLoggedInName.emit(true);
         return response;
       } else {
