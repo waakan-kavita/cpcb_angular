@@ -12,17 +12,11 @@ $db_name = 'cpcb_test';
 $port = 3308;
 
 
-// $db_host = '103.233.25.109';
-// $db_username = 'root';
-// $db_password = 'MgwydlERT!@vw9fi';
-// $db_name = 'cpcb_new';
-// $port = 3306;
-
 $mysqli = new mysqli($db_host, $db_username, $db_password,$db_name,$port);
 
 if ($mysqli->connect_error) {
 die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
 }else{
-    //echo 'Connected';
+    echo 'Connected';
 }
 ?>
