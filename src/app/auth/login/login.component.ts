@@ -19,8 +19,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,private dataService: LoginApiService,private router:Router) {
   this.angForm = this.fb.group({
-  email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-  password: ['', Validators.required]
+    ///////////privious code of using email and password//////
+  // email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
+  // password: ['', Validators.required]
+
+  username: ['', [Validators.required]],
+  pass: ['', Validators.required]
   });
   }
 
@@ -44,7 +48,7 @@ export class LoginComponent implements OnInit {
   // }
 
   postdata(angForm) {
-    this.dataService.userlogin(angForm.value.email, angForm.value.password)
+    this.dataService.userlogin(angForm.value.username, angForm.value.pass)
       .subscribe(
         data => {
           // Redirect to dashboard upon successful login
