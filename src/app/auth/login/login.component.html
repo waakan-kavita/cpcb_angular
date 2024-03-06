@@ -1,4 +1,3 @@
-
 <body style="height:700px;">
     
 <!--<h2>"ESA Service Portal"</h2>-->
@@ -8,20 +7,21 @@
 <br>
 <h4>Log In Here</h4>
 <br><br>
-<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
+<form [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off" >
+
+
+  
 <p>User Name :</p>
-<input type="text" formControlName="username" name="username" placeholder="Enter Username" autocomplete="off">
+
+<input type="text" formControlName="username" placeholder="Enter Username" autocomplete="off">
+<div *ngIf="usnameError" class="error">{{ usnameError }}</div>
+
 <p>Password :</p>
-<input type="password" formControlName="pass" name="pass" placeholder="Enter Password" autocomplete="off">
-<!--<p>User :</p>
-<select name="ujob" ><option>Select User Type</option><option>CPCB-OCEMS</option><option>CPCB-All</option><option>Industry</option><option>Admin</option></select>-->
+<input type="password" formControlName="password" name="password" placeholder="Enter Password" autocomplete="off">
+<span  *ngIf="passError" class="error">{{ passError }}</span>
+<!-- <div *ngIf="error" class="error-message">{{ error }}</div> -->
 <br><br>
-<!-- <button type="button" (click)="sendOTP()" [disabled]="otpSent">Send OTP</button>
-  <div *ngIf="otpSent">OTP Sent: {{ generatedOTP }}</div>
-  <div *ngIf="otpSent">
-    <input type="text" placeholder="Enter OTP" [(ngModel)]="enteredOTP" name="enteredOTP">
-    <button type="button" (click)="submitOTP()">Submit OTP</button>
-  </div> -->
+
   <br><br>
 <div style="text-align:center;"><input type="submit"  value="Login" title="click here to login"></div>
 <p style="text-align:center;">------- or --------</p>
@@ -31,6 +31,7 @@
 <div style="text-align:center;"><a id="hideloginFB" routerLink="../forget_password" title="click here to reset password">Forget Password</a>
 </div>
 </form>
+<div *ngIf="error" class="error">{{ error }}</div>
 </div>
 <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">Data available at this portal is as per CPCB prescribed procedure published at <a href="https://www.cpcb.nic.in/" target="blank">www.cpcb.nic.in</a></marquee>
 

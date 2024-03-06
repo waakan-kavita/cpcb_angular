@@ -1,11 +1,17 @@
 import { Routes } from '@angular/router';
 
-//Route for content layout with sidebar, navbar and footer.
+import { NavbarComponent } from '../navbar/navbar.component';
+
+
 
 export const Full_ROUTES: Routes = [
     {
         path: 'dashboard',
         loadChildren: () => import('../../dashboard/dashboard.module').then(m => m.DashboardModule)
+    },
+    {
+        path: 'user/:username',
+        loadChildren: () => import('../navbar/navbar.component').then(m => m.NavbarComponent)
     },
     {
         path: 'application',
