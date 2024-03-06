@@ -31,7 +31,16 @@ if(isset($postdata) && !empty($postdata)) {
             // Both username and password are valid
             $response['valid_username'] = true;
             $response['valid_password'] = true;
-             $response['data'] = $row;
+            $response['data'] = $row; // Store user data
+            
+            // Fetch all data of the particular user
+            $userId = $row['admin_id'];
+            $userDataSql = "SELECT * FROM site_setting WHERE user_id = '$userId'";
+            $userDataResult = mysqli_query($mysqli, $userDataSql);
+            if ($userDataResult && mysqli_num_rows($userDataResult) > 0) {
+                $userData = mysqli_fetch_assoc($userDataResult);
+                $response['user_data'] = $userData;
+            }
         } else {
             // Username is valid, but password is invalid
             $response['valid_username'] = true;
@@ -56,7 +65,7 @@ if(isset($postdata) && !empty($postdata)) {
             $response['error'] .= ', Invalid password';
         }
     }
-    // $response['data'] = $row;
+    
     echo json_encode($response);
 } 
 ?>

@@ -33,6 +33,7 @@ import * as $ from 'jquery';
 import { LoginComponent } from './login/login.component';
 import { ECommerceComponent } from './dashboard/e-commerce/e-commerce.component';
 import { MultiSelectComponent } from './dashboard/multi-select/multi-select.component';
+import { LoginApiService } from './login-api.service';
 
 
 
@@ -62,7 +63,7 @@ import { MultiSelectComponent } from './dashboard/multi-select/multi-select.comp
     PerfectScrollbarModule
   ],
   providers: [
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
+    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },LoginApiService
   ],
   bootstrap: [AppComponent]
 })
